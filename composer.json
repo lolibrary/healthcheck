@@ -1,0 +1,28 @@
+{
+    "name": "lolibrary/healthcheck",
+    "description": "Health Checking for Laravel/Lumen",
+    "type": "library",
+    "require-dev": {
+        "laravel/framework": "5.6.*",
+        "laravel/lumen-framework": "5.6.*"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Amelia Ikeda",
+            "email": "amelia@lolibrary.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lolibrary\\Health\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lolibrary\\Health\\HealthServiceProvider"
+            ]
+        }
+    }
+}
