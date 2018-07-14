@@ -3,6 +3,7 @@
 namespace Lolibrary\Health;
 
 use Lolibrary\Health\Commands;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class HealthServiceProvider extends ServiceProvider
@@ -14,12 +15,16 @@ class HealthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->commands([
+        $commands = [
             Commands\DatabaseWaitCommand::class,
             Commands\RedisWaitCommand::class,
-        ]);
+        ];
 
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->commands($commands);
+
+        if (! $this->app->routesAreCached()) {
+            $this->routes();
+        }
     }
 
     /**
@@ -30,5 +35,18 @@ class HealthServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     * Load the routes for this application.
+     *
+     * @return void
+     */
+    public function routes()
+    {
+        $lumen = class_exists('Laravel\\Lumen\\Application');
+        $router = $lumen ? $this->app->router : $this->app['router'];
+
+        require __DIR__ . '/routes.php';
     }
 }
