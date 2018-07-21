@@ -42,7 +42,7 @@ abstract class WaitCommand extends Command
      *
      * @return int The status code response of this command.
      */
-    public function handle()
+    public function check()
     {
         $sleep = (int) $this->option('sleep');
         $connection = $this->option('connection', null);

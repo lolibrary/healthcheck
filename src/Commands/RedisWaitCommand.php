@@ -27,7 +27,7 @@ class RedisWaitCommand extends WaitCommand
     {
         $this->redis = $redis;
 
-        return parent::handle();
+        return $this->check();
     }
 
     /**

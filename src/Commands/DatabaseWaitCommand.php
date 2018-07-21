@@ -27,7 +27,7 @@ class DatabaseWaitCommand extends WaitCommand
     {
         $this->db = $db;
 
-        return parent::handle();
+        return $this->check();
     }
 
     /**
