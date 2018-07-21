@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Lolibrary\Health\Commands;
 
-use App\Console\WaitCommand;
 use Illuminate\Database\DatabaseManager;
 
 class DatabaseWaitCommand extends WaitCommand

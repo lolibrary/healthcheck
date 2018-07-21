@@ -2,6 +2,7 @@
 
 namespace Lolibrary\Health\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Laravel\Lumen\Routing\Controller;
 
 class LumenHealthCheck extends Controller
@@ -13,7 +14,7 @@ class LumenHealthCheck extends Controller
      */
     public function index()
     {
-        return response()->json([
+        return new JsonResponse([
             'alive' => true,
         ], 200);
     }

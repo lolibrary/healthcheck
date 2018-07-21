@@ -22,7 +22,7 @@ class HealthServiceProvider extends ServiceProvider
 
         $this->commands($commands);
 
-        if (! $this->app->routesAreCached()) {
+        if ($this->lumen()  || ! $this->app->routesAreCached()) {
             $this->routes();
         }
     }
@@ -44,9 +44,19 @@ class HealthServiceProvider extends ServiceProvider
      */
     public function routes()
     {
-        $lumen = class_exists('Laravel\\Lumen\\Application');
+        $lumen = $this->lumen();
         $router = $lumen ? $this->app->router : $this->app['router'];
 
         require __DIR__ . '/routes.php';
+    }
+
+    /**
+     * Check if this service provider is running in lumen.
+     *
+     * @return void
+     */
+    protected function lumen()
+    {
+        return get_class($this->app) === 'Laravel\Lumen\Application';
     }
 }
